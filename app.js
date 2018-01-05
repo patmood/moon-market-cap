@@ -78,11 +78,11 @@ function init() {
   new TopList(el)
 
   // Register ServiceWorker
-  // if ('serviceWorker' in navigator) {
-  //   navigator.serviceWorker.register('/service-worker.js').then(() => {
-  //     console.log('serivceWorker registered')
-  //   })
-  // }
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/service-worker.js').then(() => {
+      console.log('serivceWorker registered')
+    })
+  }
 }
 
 init()
