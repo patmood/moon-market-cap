@@ -6,15 +6,29 @@ class TopList {
     this.renderRow = this.renderRow.bind(this)
     this.renderList = this.renderList.bind(this)
     this.el = el
-    // check for cached stuff
+
+    // check for cached data
+    try {
+      const oldList = JSON.parse(localStorage.getItem('list'))
+      this.renderList(oldList)
+    } catch (error) {
+      console.error(error)
+    }
 
     this.fetchTopList().then(this.renderList)
   }
 
   fetchTopList(count = 10) {
-    return fetch(
-      `https://api.coinmarketcap.com/v1/ticker/?limit=${count}`
-    ).then(res => res.json())
+    return fetch(`https://api.coinmarketcap.com/v1/ticker/?limit=${count}`)
+      .then(res => res.json())
+      .then(json => {
+        try {
+          localStorage.setItem('list', JSON.stringify(json))
+        } catch (error) {
+          console.error(error)
+        }
+        return json
+      })
   }
 
   renderRow(data) {
@@ -38,6 +52,7 @@ class TopList {
   }
 
   renderList(coinList) {
+    this.el.innerHTML = ''
     coinList.forEach(coin => {
       const row = this.renderRow(coin)
       this.el.appendChild(row)
@@ -50,11 +65,11 @@ function init() {
   new TopList(el)
 
   // Register ServiceWorker
-  // if ('serviceWorker' in navigator) {
-  //   navigator.serviceWorker.register('/service-worker.js').then(() => {
-  //     console.log('serivceWorker registered')
-  //   })
-  // }
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/service-worker.js').then(() => {
+      console.log('serivceWorker registered')
+    })
+  }
 }
 
 init()
