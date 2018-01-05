@@ -1,5 +1,11 @@
 const cacheName = 'serenityPWA2'
-const filesToCache = ['/', '/index.html', '/app.js', '/style.css', '/moon.svg']
+const filesToCache = [
+  '/',
+  '/index.html',
+  '/app.js',
+  '/style.css',
+  '/images/moon.svg',
+]
 
 self.addEventListener('install', e => {
   console.log('[ServiceWorker] install')

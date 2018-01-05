@@ -35,6 +35,14 @@ body {
   transform: translateY(1px);
 }
 
+.flag {
+  position: absolute;
+  height: 30px;
+  width: 30px;
+  bottom: 10%;
+  right: 10%;
+}
+
 .table td,
 .table th {
   padding: 0.2em 0.5em;
@@ -55,7 +63,9 @@ body {
 .p2 {
   padding: 2em;
 }
-
+.relative {
+  position: relative;
+}
 .muted {
   opacity: 0.5;
 }
