@@ -36,6 +36,13 @@ function renderList(coinList) {
 
 function init() {
   fetchTop().then(renderList)
+
+  // Register ServiceWorker
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/service-worker.js').then(() => {
+      console.log('serivceWorker registered')
+    })
+  }
 }
 
 init()
