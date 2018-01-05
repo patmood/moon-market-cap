@@ -1,0 +1,24 @@
+{
+  "short_name": "Moon Market Cap",
+  "name": "Moon Market Cap",
+  "icons": [
+    {
+      "src": "/images/icon_48.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "/images/icon_80.png",
+      "type": "image/png",
+      "sizes": "80x80"
+    },
+    {
+      "src": "/images/icon_192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": "index.html?launcher=true",
+  "background_color": "#15294b",
+  "display": "standalone"
+}
