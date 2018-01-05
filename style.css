@@ -1,16 +1,15 @@
-html,
+html {
+  background-color: #15294b;
+}
 body {
   font-family: system-ui, sans-serif;
-  background-color: #15294b;
-  margin: 0;
-}
-
-main {
   background-color: #fff;
+  margin: 0;
 }
 
 .hero {
   position: relative;
+  background-color: #15294b;
   color: #fff;
 }
 
@@ -92,6 +91,12 @@ main {
 }
 .green {
   color: green;
+}
+.bg-blue {
+  background-color: #15294b;
+}
+.bg-white {
+  background-color: #fff;
 }
 
 .flex {
