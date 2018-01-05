@@ -38,6 +38,7 @@ body {
 .table td,
 .table th {
   padding: 0.2em 1em;
+  border: none;
 }
 
 .m0 {
