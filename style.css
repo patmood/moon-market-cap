@@ -37,10 +37,15 @@ body {
 
 .table td,
 .table th {
-  padding: 0.2em 1em;
+  padding: 0.2em 0.5em;
   border: none;
 }
-
+.max-width {
+  max-width: 35rem;
+}
+.mx-auto {
+  margin: auto;
+}
 .m0 {
   margin: 0;
 }
@@ -79,4 +84,46 @@ body {
 }
 .justify-center {
   justify-content: center;
+}
+
+.btn {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-block;
+  line-height: var(--button-line-height);
+  padding: var(--button-padding-y) var(--button-padding-x);
+  margin: 0;
+  height: auto;
+  border: var(--border-width) solid transparent;
+  vertical-align: middle;
+  -webkit-appearance: none;
+  color: inherit;
+  background-color: transparent;
+}
+
+.btn:hover {
+  text-decoration: none;
+}
+
+.btn:focus {
+  outline: none;
+  border-color: var(--darken-2);
+  box-shadow: 0 0 0 3px var(--darken-3);
+}
+
+::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+:root {
+  --border-width: 1px;
+  --button-line-height: 1.125rem;
+  --button-padding-y: 0.5rem;
+  --button-padding-x: 1rem;
+  --darken-2: rgba(0, 0, 0, 0.125);
+  --darken-3: rgba(0, 0, 0, 0.25);
 }

@@ -4,18 +4,20 @@ class TopList {
   constructor(el) {
     this.fetchTopList = this.fetchTopList.bind(this)
     this.renderRow = this.renderRow.bind(this)
-    this.renderList = this.renderList.bind(this)
+    this.render = this.render.bind(this)
+    this.list = []
     this.el = el
 
     // check for cached data
+    // TODO: use indexDb
     try {
-      const oldList = JSON.parse(localStorage.getItem('list'))
-      this.renderList(oldList)
+      this.list = JSON.parse(localStorage.getItem('list'))
+      this.render()
     } catch (error) {
       console.error(error)
     }
 
-    this.fetchTopList().then(this.renderList)
+    this.fetchTopList().then(this.render)
   }
 
   fetchTopList(count = 10) {
@@ -27,36 +29,47 @@ class TopList {
         } catch (error) {
           console.error(error)
         }
+        this.list = json
         return json
       })
   }
 
   renderRow(data) {
-    const tr = document.createElement('tr')
-
-    if (data.last_updated < Date.now() / 1000 - STALE_THRESHOLD) {
-      tr.classList.add('muted')
-    }
-
+    const rowClass =
+      data.last_updated < Date.now() / 1000 - STALE_THRESHOLD ? 'muted' : ''
     const colorClass = data.percent_change_24h > 0 ? 'green' : 'red'
-    tr.innerHTML = `
-      <td class="center">${data.rank}</td>
-      <td>
-        <div>${data.symbol}</div>
-        <small class="muted">${data.name}</small>
-      </td>
-      <td class="align-right">$${data.price_usd}</td>
-      <td class="align-right ${colorClass}">${data.percent_change_24h}%</td>
+
+    return `
+      <tr class="${rowClass}">
+        <td class="center">${data.rank}</td>
+        <td>
+          <div>${data.symbol}</div>
+          <small class="muted">${data.name}</small>
+        </td>
+        <td class="align-right">$${data.price_usd}</td>
+        <td class="align-right ${colorClass}">${data.percent_change_24h}%</td>
+      </tr>
     `
-    return tr
   }
 
-  renderList(coinList) {
-    this.el.innerHTML = ''
-    coinList.forEach(coin => {
-      const row = this.renderRow(coin)
-      this.el.appendChild(row)
-    })
+  render() {
+    const template = `
+      <table class="table mt1 mx-auto">
+        <thead>
+          <tr>
+            <th class="center">Rank</th>
+            <th class="align-left">Symbol</th>
+            <th class="align-right">Price (USD)</th>
+            <th class="align-right">24h Change</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${this.list.map(coin => this.renderRow(coin)).join('')}
+        </tbody>
+      </table>
+
+    `
+    this.el.innerHTML = template
   }
 }
 
@@ -65,11 +78,11 @@ function init() {
   new TopList(el)
 
   // Register ServiceWorker
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/service-worker.js').then(() => {
-      console.log('serivceWorker registered')
-    })
-  }
+  // if ('serviceWorker' in navigator) {
+  //   navigator.serviceWorker.register('/service-worker.js').then(() => {
+  //     console.log('serivceWorker registered')
+  //   })
+  // }
 }
 
 init()

@@ -14,6 +14,8 @@
   <link rel="apple-touch-icon" sizes="80x80" href="/images/icon_80.png">
   <link rel="apple-touch-icon" sizes="192x192" href="/images/icon_192.png">
   <link rel="apple-touch-icon" sizes="512x512" href="/images/icon_512.png">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -25,21 +27,10 @@
     <img class="moon" src="/moon.svg" alt="">
   </header>
 
-  <section class="flex justify-center">
-    <table class="table mt1">
-      <thead>
-        <tr>
-          <th class="center">Rank</th>
-          <th class="align-left">Symbol</th>
-          <th class="align-right">Price (USD)</th>
-          <th class="align-right">24h Change</th>
-        </tr>
-      </thead>
-      <tbody id="coin-list">
-      </tbody>
-    </table>
-    <section>
-      <script src="/app.js"></script>
+  <section class="mx-auto max-width">
+    <div id="coin-list"></div>
+  </section>
+  <script src="/app.js"></script>
 </body>
 
 </html>
