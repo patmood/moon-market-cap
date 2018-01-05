@@ -1,11 +1,16 @@
+html,
 body {
   font-family: system-ui, sans-serif;
+  background-color: #15294b;
   margin: 0;
+}
+
+main {
+  background-color: #fff;
 }
 
 .hero {
   position: relative;
-  background: #15294b;
   color: #fff;
 }
 
