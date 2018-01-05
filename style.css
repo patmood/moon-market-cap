@@ -1,0 +1,81 @@
+body {
+  font-family: system-ui, sans-serif;
+  margin: 0;
+}
+
+.hero {
+  position: relative;
+  background: #15294b;
+  color: #fff;
+}
+
+.stars {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: radial-gradient(
+      2px 2px at 20px 30px,
+      #eee,
+      rgba(0, 0, 0, 0)
+    ),
+    radial-gradient(2px 2px at 40px 70px, #fff, rgba(0, 0, 0, 0)),
+    radial-gradient(2px 2px at 50px 160px, #ddd, rgba(0, 0, 0, 0)),
+    radial-gradient(2px 2px at 90px 40px, #fff, rgba(0, 0, 0, 0)),
+    radial-gradient(2px 2px at 130px 80px, #fff, rgba(0, 0, 0, 0)),
+    radial-gradient(2px 2px at 160px 120px, #ddd, rgba(0, 0, 0, 0));
+  background-repeat: repeat;
+  background-size: 200px 200px;
+}
+
+.moon {
+  display: block;
+  width: 100%;
+  transform: translateY(1px);
+}
+
+.table td,
+.table th {
+  padding: 0.2em 1em;
+}
+
+.m0 {
+  margin: 0;
+}
+.mt1 {
+  margin-top: 1em;
+}
+.p2 {
+  padding: 2em;
+}
+
+.muted {
+  opacity: 0.5;
+}
+.center {
+  text-align: center;
+}
+.align-left {
+  text-align: left;
+}
+.align-right {
+  text-align: right;
+}
+.text-shadow {
+  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.4);
+}
+
+.red {
+  color: tomato;
+}
+.green {
+  color: green;
+}
+
+.flex {
+  display: flex;
+}
+.justify-center {
+  justify-content: center;
+}
