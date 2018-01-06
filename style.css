@@ -105,6 +105,9 @@ body {
 .justify-center {
   justify-content: center;
 }
+.scroll {
+  overflow-x: scroll;
+}
 
 .btn {
   font-family: inherit;

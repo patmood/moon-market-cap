@@ -1,5 +1,11 @@
 const STALE_THRESHOLD = 600 // 10 mins
 
+const formatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+  minimumFractionDigits: 0,
+})
+
 class TopList {
   constructor(el) {
     this.fetchTopList = this.fetchTopList.bind(this)
@@ -9,9 +15,11 @@ class TopList {
     this.el = el
 
     // check for cached data
-    // TODO: use indexDb
+    // TODO: use indexedDb
     try {
-      this.list = JSON.parse(localStorage.getItem('list'))
+      const cachedList = JSON.parse(localStorage.getItem('list'))
+      this.list = cachedList || []
+      console.log('cached list:', cachedList)
       this.render()
     } catch (error) {
       console.error(error)
@@ -46,8 +54,9 @@ class TopList {
           <div>${data.symbol}</div>
           <small class="muted">${data.name}</small>
         </td>
-        <td class="align-right">$${data.price_usd}</td>
+        <td class="align-right">${formatter.format(data.price_usd)}</td>
         <td class="align-right ${colorClass}">${data.percent_change_24h}%</td>
+        <td class="align-right">${formatter.format(data.market_cap_usd)}</td>
       </tr>
     `
   }
@@ -61,6 +70,7 @@ class TopList {
             <th class="align-left">Symbol</th>
             <th class="align-right">Price (USD)</th>
             <th class="align-right">24h Change</th>
+            <th class="align-right">Market Cap</th>
           </tr>
         </thead>
         <tbody>
