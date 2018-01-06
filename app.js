@@ -27,7 +27,16 @@ class TopList {
       console.error(error)
     }
 
-    this.fetchTopList().then(this.render)
+    this.fetchTopList()
+      .then(json => {
+        try {
+          localStorage.setItem('list', JSON.stringify(json))
+        } catch (error) {
+          console.error(error)
+        }
+        return json
+      })
+      .then(this.render)
   }
 
   nextPage(e) {
@@ -43,11 +52,6 @@ class TopList {
     )
       .then(res => res.json())
       .then(json => {
-        try {
-          localStorage.setItem('list', JSON.stringify(json))
-        } catch (error) {
-          console.error(error)
-        }
         this.list = start ? this.list.concat(json) : json
         return json
       })
