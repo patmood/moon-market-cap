@@ -9,13 +9,15 @@ const formatter = new Intl.NumberFormat('en-US', {
 class TopList {
   constructor(el) {
     this.fetchTopList = this.fetchTopList.bind(this)
+    this.nextPage = this.nextPage.bind(this)
     this.renderRow = this.renderRow.bind(this)
     this.render = this.render.bind(this)
     this.list = []
+    this.fetchPosition = 0
     this.el = el
 
-    // check for cached data
-    // TODO: use indexedDb
+    this.el.addEventListener('click', this.nextPage)
+
     try {
       const cachedList = JSON.parse(localStorage.getItem('list'))
       this.list = cachedList || []
@@ -28,8 +30,17 @@ class TopList {
     this.fetchTopList().then(this.render)
   }
 
-  fetchTopList(count = 10) {
-    return fetch(`https://api.coinmarketcap.com/v1/ticker/?limit=${count}`)
+  nextPage(e) {
+    if (e.target.id === 'load-more') {
+      this.fetchPosition += 10
+      this.fetchTopList(this.fetchPosition).then(this.render)
+    }
+  }
+
+  fetchTopList(start = 0, count = 10) {
+    return fetch(
+      `https://api.coinmarketcap.com/v1/ticker/?limit=${count}&start=${start}`
+    )
       .then(res => res.json())
       .then(json => {
         try {
@@ -37,7 +48,7 @@ class TopList {
         } catch (error) {
           console.error(error)
         }
-        this.list = json
+        this.list = start ? this.list.concat(json) : json
         return json
       })
   }
@@ -79,7 +90,9 @@ class TopList {
           ${this.list.map(coin => this.renderRow(coin)).join('')}
         </tbody>
       </table>
-
+      <div class="center">
+        <button class="btn" id="load-more">Load More</button>
+      </div>
     `
     this.el.innerHTML = template
   }
@@ -90,11 +103,11 @@ function init() {
   new TopList(el)
 
   // Register ServiceWorker
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/service-worker.js').then(() => {
-      console.log('serivceWorker registered')
-    })
-  }
+  // if ('serviceWorker' in navigator) {
+  //   navigator.serviceWorker.register('/service-worker.js').then(() => {
+  //     console.log('serivceWorker registered')
+  //   })
+  // }
 }
 
 init()

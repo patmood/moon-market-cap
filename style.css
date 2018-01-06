@@ -89,11 +89,15 @@ body {
   text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.4);
 }
 
+/* COLORS */
 .red {
   color: tomato;
 }
 .green {
   color: green;
+}
+.white {
+  color: #fff;
 }
 .bg-blue {
   background-color: #15294b;
@@ -121,7 +125,7 @@ body {
 .btn {
   font-family: inherit;
   font-size: inherit;
-  font-weight: bold;
+  font-weight: normal;
   text-decoration: none;
   cursor: pointer;
   display: inline-block;
@@ -132,8 +136,8 @@ body {
   border: var(--border-width) solid transparent;
   vertical-align: middle;
   -webkit-appearance: none;
-  color: inherit;
-  background-color: transparent;
+  color: #fff;
+  background-color: #15294b;
 }
 
 .btn:hover {
