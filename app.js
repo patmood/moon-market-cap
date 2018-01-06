@@ -49,14 +49,16 @@ class TopList {
 
     return `
       <tr class="${rowClass}">
-        <td class="center">${data.rank}</td>
+        <td class="center xs-hide">${data.rank}</td>
         <td>
           <div>${data.symbol}</div>
           <small class="muted">${data.name}</small>
         </td>
         <td class="align-right">${formatter.format(data.price_usd)}</td>
         <td class="align-right ${colorClass}">${data.percent_change_24h}%</td>
-        <td class="align-right">${formatter.format(data.market_cap_usd)}</td>
+        <td class="align-right xs-hide">${formatter.format(
+          data.market_cap_usd
+        )}</td>
       </tr>
     `
   }
@@ -66,11 +68,11 @@ class TopList {
       <table class="table mt1 mx-auto">
         <thead>
           <tr>
-            <th class="center">Rank</th>
+            <th class="center xs-hide">Rank</th>
             <th class="align-left">Symbol</th>
             <th class="align-right">Price (USD)</th>
             <th class="align-right">24h Change</th>
-            <th class="align-right">Market Cap</th>
+            <th class="align-right xs-hide">Market Cap</th>
           </tr>
         </thead>
         <tbody>
