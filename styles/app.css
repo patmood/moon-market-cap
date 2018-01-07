@@ -1,0 +1,115 @@
+@import 'basscss-basic';
+
+/* Basscss Modules */
+@import 'basscss-type-scale';
+@import 'basscss-typography';
+@import 'basscss-layout';
+@import 'basscss-align';
+@import 'basscss-margin';
+@import 'basscss-padding';
+@import 'basscss-grid';
+@import 'basscss-flexbox';
+@import 'basscss-position';
+@import 'basscss-border';
+@import 'basscss-hide';
+
+/* @import 'basscss-addons/modules/responsive-margin'; */
+/* @import 'basscss-addons/modules/responsive-padding'; */
+/* @import 'basscss-addons/modules/media-object'; */
+/* @import 'basscss-addons/modules/all'; */
+@import 'basscss-addons/modules/forms';
+/* @import 'basscss-addons/modules/input-range'; */
+/* @import 'basscss-addons/modules/progress'; */
+@import 'basscss-addons/modules/btn';
+@import 'basscss-addons/modules/btn-primary';
+/* @import 'basscss-addons/modules/btn-outline'; */
+/* @import 'basscss-addons/modules/btn-sizes'; */
+/* @import 'basscss-addons/modules/colors'; */
+/* @import 'basscss-addons/modules/background-colors'; */
+/* @import 'basscss-addons/modules/border-colors'; */
+@import 'basscss-addons/modules/darken';
+/* @import 'basscss-addons/modules/lighten'; */
+/* @import 'basscss-addons/modules/background-images'; */
+
+html {
+  background-color: #15294b;
+}
+body {
+  font-family: system-ui, sans-serif;
+  background-color: #fff;
+  margin: 0;
+  min-height: 100vh;
+}
+
+.hero {
+  position: relative;
+  background-color: #15294b;
+  color: #fff;
+}
+
+.stars {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: radial-gradient(
+      2px 2px at 20px 30px,
+      #eee,
+      rgba(0, 0, 0, 0)
+    ),
+    radial-gradient(2px 2px at 40px 70px, #fff, rgba(0, 0, 0, 0)),
+    radial-gradient(2px 2px at 50px 160px, #ddd, rgba(0, 0, 0, 0)),
+    radial-gradient(2px 2px at 90px 40px, #fff, rgba(0, 0, 0, 0)),
+    radial-gradient(2px 2px at 130px 80px, #fff, rgba(0, 0, 0, 0)),
+    radial-gradient(2px 2px at 160px 120px, #ddd, rgba(0, 0, 0, 0));
+  background-repeat: repeat;
+  background-size: 200px 200px;
+}
+
+.moon {
+  display: block;
+  width: 100%;
+  transform: translateY(1px);
+}
+
+.flag {
+  position: absolute;
+  height: 30px;
+  width: 30px;
+  bottom: 10%;
+  right: 10%;
+}
+
+.table td,
+.table th {
+  padding: 0.2em 0.5em;
+  border: none;
+}
+.max-width {
+  max-width: 35rem;
+}
+.text-shadow {
+  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.4);
+}
+
+/* COLORS */
+.red {
+  color: tomato;
+}
+.green {
+  color: green;
+}
+.white {
+  color: #fff;
+}
+.bg-blue {
+  background-color: #15294b;
+}
+.bg-white {
+  background-color: #fff;
+}
+
+.scroll {
+  overflow-x: scroll;
+}
