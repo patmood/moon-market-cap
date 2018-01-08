@@ -1,5 +1,6 @@
 import { h } from 'hyperapp'
 import Chart from 'chart.js'
+import { percentFormatter } from '../lib/utils'
 
 let myChart
 
@@ -8,7 +9,19 @@ const setupChart = (el, portfolio) => {
     datasets: [{ data: [] }],
     labels: [],
   }
-  const options = {}
+  const options = {
+    tooltips: {
+      callbacks: {
+        label: (tooltipItem, data) => {
+          const percent = percentFormatter.format(
+            data.datasets[0].data[tooltipItem.index]
+          )
+          return `${data.labels[tooltipItem.index]} ${percent}`
+        },
+      },
+    },
+  }
+
   myChart = new Chart(el, {
     type: 'doughnut',
     data: data,
@@ -28,13 +41,13 @@ const handleUpdate = portfolio => {
   myChart.update(0)
 }
 
-export const DonutChart = ({ portfolio }) => {
+export const DonutChart = ({ portfolioValues }) => {
   return (
     <div style="position: relative">
       <canvas
         id="chart"
-        oncreate={el => setupChart(el, portfolio)}
-        onupdate={(el, oldProps) => handleUpdate(portfolio)}
+        oncreate={el => setupChart(el, portfolioValues)}
+        onupdate={(el, oldProps) => handleUpdate(portfolioValues)}
       />
     </div>
   )

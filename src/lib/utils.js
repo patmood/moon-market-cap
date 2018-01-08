@@ -3,3 +3,7 @@ export const currencyFormatter = new Intl.NumberFormat('en-US', {
   currency: 'USD',
   minimumFractionDigits: 0,
 })
+
+export const percentFormatter = new Intl.NumberFormat('en-US', {
+  style: 'percent',
+})

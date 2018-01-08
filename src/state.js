@@ -5,4 +5,7 @@ export default {
   portfolio: {},
   portfolioCoinData: {},
   user: null,
+  portfolioStats: {
+    totalValue: 0,
+  },
 }

@@ -39,7 +39,8 @@ export const actionDefs = {
     fetch(`https://api.coinmarketcap.com/v1/ticker/${name}/`)
       .then(res => res.json())
       .then(coinData => {
-        return actions.setCoin({ [name]: coinData[0] })
+        actions.setCoin({ [name]: coinData[0] })
+        actions.calculateStats()
       })
   },
 
@@ -75,7 +76,7 @@ export const actionDefs = {
         .catch(err => console.error(err))
     }
 
-    actions.setPortfolio(portfolio)
+    return actions.setPortfolio(portfolio)
   },
 
   fetchPortfolio: () => (state, actions) => {
@@ -107,5 +108,20 @@ export const actionDefs = {
     const portfolio = Object.assign({}, state.portfolio)
     delete portfolio[id]
     actions.savePortfolio(portfolio)
+  },
+
+  calculateStats: () => (state, actions) => {
+    let totalValue = 0
+
+    for (const coin in state.portfolioCoinData) {
+      totalValue +=
+        state.portfolioCoinData[coin].price_usd * state.portfolio[coin]
+    }
+
+    return {
+      portfolioStats: {
+        totalValue,
+      },
+    }
   },
 }
