@@ -24,8 +24,8 @@ export const Portfolio = ({ state, actions }) => {
           <thead>
             <tr>
               <th class="left-align">Symbol</th>
-              <th class="right-align">Total Value (USD)</th>
               <th class="right-align">Quantity</th>
+              <th class="right-align">Total Value (USD)</th>
               <th class="right-align">Price (USD)</th>
               <th class="right-align">24h Change</th>
               <th />

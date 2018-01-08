@@ -16,10 +16,10 @@ export const PortfolioRow = props => {
         <div>{props.data.symbol}</div>
         <small class="muted">{props.data.name}</small>
       </td>
+      <td class="right-align">{props.amount}</td>
       <td class="right-align">
         {currencyFormatter.format(props.amount * props.data.price_usd)}
       </td>
-      <td class="right-align">{props.amount}</td>
       <td class="right-align">
         {currencyFormatter.format(props.data.price_usd)}
       </td>
