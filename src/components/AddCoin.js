@@ -24,7 +24,7 @@ export const AddCoin = ({ state, actions }) => (
       <label>Quantity:</label>
       <input placeholder="0" name="amount" class="input" />
     </div>
-    <div>
+    <div class="right-align">
       <button class="btn btn-primary" type="submit">
         Add to portfolio
       </button>

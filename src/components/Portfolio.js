@@ -2,6 +2,7 @@ import { h } from 'hyperapp'
 import { DonutChart } from './DonutChart'
 import { PortfolioRow } from './PortfolioRow'
 import { AddCoin } from './AddCoin'
+import { Stats } from './Stats'
 
 export const Portfolio = ({ state, actions }) => {
   const portfolioValues = {}
@@ -16,6 +17,7 @@ export const Portfolio = ({ state, actions }) => {
   return (
     <div>
       <h2>Your Portfolio</h2>
+      <Stats {...state.portfolioStats} />
       {!!Object.keys(state.portfolio).length && (
         <DonutChart portfolioValues={portfolioValues} />
       )}

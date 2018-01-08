@@ -112,15 +112,41 @@ export const actionDefs = {
 
   calculateStats: () => (state, actions) => {
     let totalValue = 0
+    let totalPercentChange_1h = 0
+    let totalPercentChange_24h = 0
+    let totalPercentChange_7d = 0
 
     for (const coin in state.portfolioCoinData) {
       totalValue +=
         state.portfolioCoinData[coin].price_usd * state.portfolio[coin]
     }
 
+    for (const coin in state.portfolioCoinData) {
+      const {
+        percent_change_1h,
+        percent_change_24h,
+        percent_change_7d,
+      } = state.portfolioCoinData[coin]
+
+      const percentPortfolio =
+        state.portfolioCoinData[coin].price_usd *
+        state.portfolio[coin] /
+        totalValue
+
+      totalPercentChange_1h +=
+        percentPortfolio * parseFloat(percent_change_1h) / 100
+      totalPercentChange_24h +=
+        percentPortfolio * parseFloat(percent_change_24h) / 100
+      totalPercentChange_7d +=
+        percentPortfolio * parseFloat(percent_change_7d) / 100
+    }
+
     return {
       portfolioStats: {
         totalValue,
+        totalPercentChange_1h,
+        totalPercentChange_24h,
+        totalPercentChange_7d,
       },
     }
   },
