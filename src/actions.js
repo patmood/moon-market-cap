@@ -1,17 +1,9 @@
 import { firestore } from './lib/fire'
 
 export const actionDefs = {
-  setUser: user => (state, actions) => {
-    return { user }
-  },
-
-  setPortfolio: portfolio => (state, actions) => {
-    return { portfolio }
-  },
-
-  setAllCoins: allCoins => (state, actions) => {
-    return { allCoins }
-  },
+  setUser: user => (state, actions) => ({ user }),
+  setPortfolio: portfolio => (state, actions) => ({ portfolio }),
+  setAllCoins: allCoins => (state, actions) => ({ allCoins }),
 
   setTopList: ({ list, listOffset }) => (state, actions) => {
     const newList = listOffset ? state.list.concat(list) : list
@@ -69,18 +61,21 @@ export const actionDefs = {
 
     // Get the latest price for this coin
     actions.fetchCoin(name)
+    actions.savePortfolio(newPortfolio)
+  },
 
+  savePortfolio: portfolio => (state, actions) => {
     // Save portfolio in firebase
     if (state.user) {
       firestore
         .collection('portfolios')
         .doc(state.user.uid)
-        .set(newPortfolio)
+        .set(portfolio)
         .then(() => console.log('saved to firebase'))
         .catch(err => console.error(err))
     }
 
-    return { portfolio: newPortfolio }
+    actions.setPortfolio(portfolio)
   },
 
   fetchPortfolio: () => (state, actions) => {
@@ -102,5 +97,15 @@ export const actionDefs = {
         }
       })
       .catch(err => console.error(err))
+  },
+
+  deleteCoin: id => (state, actions) => {
+    const shouldDelete = confirm(
+      `Are you sure you want to delete ${id} from your portfolio?`
+    )
+    if (!shouldDelete) return
+    const portfolio = Object.assign({}, state.portfolio)
+    delete portfolio[id]
+    actions.savePortfolio(portfolio)
   },
 }

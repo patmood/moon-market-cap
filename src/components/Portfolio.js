@@ -14,17 +14,20 @@ export const Portfolio = ({ state, actions }) => (
         <thead>
           <tr>
             <th class="left-align">Symbol</th>
-            <th class="right-align">Percentage</th>
+            <th class="right-align">Total Value (USD)</th>
+            <th class="right-align">Quantity</th>
             <th class="right-align">Price (USD)</th>
             <th class="right-align">24h Change</th>
+            <th />
           </tr>
         </thead>
         <tbody>
-          {Object.keys(state.portfolio).map(symbol => (
+          {Object.keys(state.portfolio).map(id => (
             <PortfolioRow
-              key={symbol}
-              amount={state.portfolio[symbol]}
-              data={state.portfolioCoinData[symbol]}
+              key={id}
+              amount={state.portfolio[id]}
+              data={state.portfolioCoinData[id]}
+              actions={actions}
             />
           ))}
         </tbody>
