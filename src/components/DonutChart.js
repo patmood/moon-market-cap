@@ -1,6 +1,6 @@
 import { h } from 'hyperapp'
 import Chart from 'chart.js'
-import { percentFormatter } from '../lib/utils'
+import { percentFormatter, generateColors } from '../lib/utils'
 
 let myChart
 
@@ -38,6 +38,10 @@ const handleUpdate = portfolio => {
     myChart.data.datasets[0].data.push(portfolio[symbol])
     myChart.data.labels.push(symbol)
   }
+
+  const numPoints = myChart.data.datasets[0].data.length
+  myChart.data.datasets[0].backgroundColor = generateColors(numPoints)
+
   myChart.update(0)
 }
 
