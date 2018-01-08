@@ -20,3 +20,9 @@ auth.onAuthStateChanged(user => {
   setUser(user)
   fetchPortfolio()
 })
+
+auth.getRedirectResult().then(result => {
+  console.log('REDIRECT RESULT', result)
+  setUser(result.user)
+  fetchPortfolio()
+})
